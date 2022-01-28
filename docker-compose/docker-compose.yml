@@ -1,0 +1,43 @@
+version: '3'
+
+networks:
+  app-web:
+   driver: bridge
+
+services:
+  mysql:
+    image: mysql
+    ports:
+     - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    networks:
+     - app-web
+    environment:
+     - TZ=Asia/Shanghai
+     - MYSQL_USER=root
+     - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+     - ./mysql/data:/var/lib/mysql
+     - ./mysql/my.cnf:/etc/mysql/my.cnf
+     - /etc/localtime:/etc/localtime
+  backend:
+    image: backend-blog
+    ports:
+     - 5000:5000
+    depends_on:
+     - mysql
+    networks:
+     - app-web
+  admin:
+    image: admin-blog
+    ports:
+     - 4000:4000
+    depends_on:
+     - backend
+  frontend:
+    image: frontend-blog
+    ports:
+     - 3000:3000
+    depends_on:
+     - backend
