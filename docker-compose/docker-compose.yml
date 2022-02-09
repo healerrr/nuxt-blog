@@ -6,21 +6,24 @@ networks:
 
 services:
   mysql:
-    image: mysql
-    ports:
-     - 3306:3306
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:5.7
+    command: 
+      --default-authentication-plugin=mysql_native_password 
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1 
     restart: always
     networks:
      - app-web
     environment:
-     - TZ=Asia/Shanghai
-     - MYSQL_USER=root
-     - MYSQL_ROOT_PASSWORD=123456
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=blog
     volumes:
      - ./mysql/data:/var/lib/mysql
-     - ./mysql/my.cnf:/etc/mysql/my.cnf
-     - /etc/localtime:/etc/localtime
+     - ./mysql/my.cnf:/etc/my.cnf
+    ports:
+     - 3306:3306
   backend:
     image: backend-blog
     ports:
@@ -32,7 +35,7 @@ services:
   admin:
     image: admin-blog
     ports:
-     - 4000:4000
+     - 4000:80
     depends_on:
      - backend
   frontend:
