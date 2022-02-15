@@ -1,6 +1,6 @@
 const qiniu = require('qiniu')
-const ACCESS_KEY = 'UxXRnLJnRsC3AaEII661ZgPOtmcFeaXigeKbc85O';
-const SECRET_KEY = '_5m492oDojUEH-hPt02JDFNmbU2VCpMZU8UY_inv';
+const ACCESS_KEY = 'EoikAR3-_uG_XXIuohdTKEWdpl8VGTdoXFgEKpK0';
+const SECRET_KEY = 'Rm8ZpfZCn3lU9o8OymKI38oiVNWmvTo3vZnm-xYn';
 const mac = new qiniu.auth.digest.Mac(ACCESS_KEY, SECRET_KEY);
 
 const { Auth } = require('@middlewares/auth');
@@ -19,7 +19,7 @@ const router = new Router({
 router.post('/upload/token', new Auth(AUTH_ADMIN).m, async (ctx) => {
     // console.log('mac', mac)
     const options = {
-        scope: 'boblog-v2',
+        scope: 'healerrr',
         expires: 7200
     };
     const putPolicy = new qiniu.rs.PutPolicy(options);

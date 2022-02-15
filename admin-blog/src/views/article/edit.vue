@@ -22,7 +22,7 @@
       <el-form-item label="图片" prop="img_url">
         <el-upload
           class="avatar-uploader"
-          action="https://upload-z2.qiniup.com/"
+          action="https://upload-z0.qiniup.com/"
           :show-file-list="false"
           :data="{ token }"
           :on-success="handleUploadSuccess"
@@ -174,7 +174,7 @@ export default {
     },
     // 图片上传成功回调
     handleUploadSuccess(file) {
-      this.ruleForm.img_url = `https://cdn.boblog.com/${file.key}`
+      this.ruleForm.img_url = `http://r713mnvqu.hd-bkt.clouddn.com/${file.key}`
       this.$message.success('上传成功!')
     },
     $imgDel(pos, $file) {
@@ -194,12 +194,12 @@ export default {
       formdata.append('file', $file)
       formdata.append('token', this.token)
       this.$axios({
-        url: 'https://upload-z2.qiniup.com/',
+        url: 'https://upload-z0.qiniup.com/',
         method: 'post',
         data: formdata,
         headers: { 'Content-Type': 'multipart/form-data' }
       }).then((res) => {
-        const img_url = `https://cdn.boblog.com/${res.data.key}`
+        const img_url = `http://r713mnvqu.hd-bkt.clouddn.com/${res.data.key}`
         this.$refs.md.$img2Url(pos, img_url)
         loading.close()
       }).catch(err => {

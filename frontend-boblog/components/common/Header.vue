@@ -129,7 +129,6 @@ export default {
   },
 }
 </script>
-
 <style scoped lang="scss">
 .header {
   border-bottom: 1px solid #f0f0f0;
@@ -147,7 +146,7 @@ export default {
   display: block;
   width: 100px;
   height: 56px;
-  background: url('https://cdn.boblog.com/logo.png') center center no-repeat;
+  background: url('http://r713mnvqu.hd-bkt.clouddn.com/logo.png') center center no-repeat;
   background-size: 100px;
 }
 .nav {
